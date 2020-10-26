@@ -7,6 +7,8 @@ from time import ctime
 import time
 from datetime import datetime
 from shutil import copy2
+from shutil import move
+
 
 from setup_logger import logger
 import yaml
@@ -82,7 +84,6 @@ class FileCopyObj(object):
             base = os.path.basename(k)
             mydir = os.path.join(self.targetDirectory,v)
 
-
             try:
                 if not os.path.exists(os.path.dirname(mydir)):
                     os.makedirs(os.path.dirname(mydir))
@@ -92,8 +93,8 @@ class FileCopyObj(object):
 
             targetFile = os.path.join(mydir, base)
 
-            copy2(k, targetFile)
-            logger.info("file copied to --> %s" % targetFile )
+            move(k, targetFile)
+            logger.info("file moved to --> %s" % targetFile )
             logger.info("")
 
         #print(files_grabbed)
